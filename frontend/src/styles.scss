@@ -1,0 +1,17 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+html, body {
+    min-height: 100vh;
+    height: auto;
+    margin: 0;
+  }
+
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+}

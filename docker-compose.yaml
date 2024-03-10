@@ -1,0 +1,66 @@
+version: '3'
+services:
+    angular:
+        build: 
+            context: ./frontend
+            dockerfile: Dockerfile
+        restart: always
+        ports: 
+            - 80:4200
+        volumes:
+            - ./frontend:/project
+            - /project/node_modules
+        networks:
+            - 'frontend'
+
+    nodejs:
+        build: ./backend
+        restart: always
+        ports:
+            - 8080:8080
+        volumes:
+          - ./backend:/usr/src/app
+        networks: 
+          - 'database'
+          - 'backend'
+        env_file:
+            - .env
+
+    mysql:
+        image: 'mysql:8.0'
+        restart: always
+        ports:
+            - '${DB_PORT}:3006'
+        environment:
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_DATABASE: '${DB_DATABASE}'
+        volumes:
+            - './database/storage:/var/lib/mysql'
+        networks:
+            - 'database'
+        env_file:
+            - .env
+
+    proxy:
+        image: 'jc21/nginx-proxy-manager:latest'
+        restart: unless-stopped
+        ports:
+            - '81:81'
+            - '443:443'
+        volumes:
+            - ./proxy/data:/data
+            - ./proxy/letsencrypt:/etc/letsencrypt
+        networks:
+            - 'frontend'
+            - 'backend'
+    
+networks:
+    database:
+        driver: bridge
+    backend:
+        driver: bridge
+    frontend:
+        driver: bridge
+volumes:
+    database:
+        driver: local

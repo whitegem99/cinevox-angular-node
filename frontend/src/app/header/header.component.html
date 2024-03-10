@@ -1,0 +1,30 @@
+<header id="app-hdr">
+    <div class="app-row flex-justified-center">
+        <h1>
+            <a :href="/home">
+                <img class="logo-app" src="/assets/images/weLoveCinema.jpg" :alt="appName">
+            </a>
+        </h1>
+        <div class="flex-right-center">
+            <div class="sponsor-logos flex-right-center">
+                <a href="http://www.federation-wallonie-bruxelles.be" target="_blank" rel="noopener">
+                    <img class="logo-fwb" src="https://images.bybrightfish.be/events/cinevox-db/logo-fwb-hori-noir.svg" alt="Fédération Wallonie-Bruxelles">
+                </a>
+                <a href="https://www.rtbf.be/" target="_blank" rel="noopener">
+                    <img class="logo-rtbf" src="https://images.bybrightfish.be/events/cinevox-db/logo-rtbf-be-n.svg" alt="RTBF">
+                </a>
+            </div>
+            <nav class="menu-lang">
+                <div class="menu-lang-inner">
+                    <button type="button"
+                            *ngFor="let language of languages"
+                            class="btn-lang {{language}}"
+                            [disabled]="local===language"
+                            (click)="changeLocal(language)">
+                            {{language}}
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>

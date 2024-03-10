@@ -1,0 +1,35 @@
+/*
+  Home view
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+@import "../variables.scss";
+
+.home {
+    position: relative;
+    border: 5px solid $green;
+    background-image: url("/assets/images/background_1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-x: center;
+    background-position-y: top;
+    height: calc(100vh - 124px);
+}
+
+.home{
+  display: flex;
+  justify-content: center !important;
+  text-align: center;
+  align-items: center !important;
+}
+
+.iframe-wrapper{
+  display: inherit;
+  aspect-ratio: 16/9;
+  max-height: 60vh;
+  min-height: 80%;
+}
+
+iframe{
+  display: inherit;
+  aspect-ratio: 16/9;
+  outline: 5px solid $green;
+}

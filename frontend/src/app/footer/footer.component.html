@@ -1,0 +1,32 @@
+<nav id="menu-months">
+    <h1 class="sr-only">Month menu</h1>
+    <div id="menu-months-content">
+        <select class="menu-months-selector" onchange="javascript:location.href = this.value;">
+            <option value="" selected translate>Select Month</option>
+            <option *ngFor="let month of allMonths" routerLink="/month/{{month}}" value="/month/{{month}}" translate>{{getMonthNameLong(month)}}</option>
+        </select>
+
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <ol class="nav navbar-nav flex-row">
+                    <li *ngFor="let month of allMonths" class="month">
+                        <a href="/month/{{month}}" translate>{{getMonthNameShort(month)}}</a>
+                    </li>
+                </ol>
+            </div>
+        </nav>
+        
+        <ol class="menu-months-func">
+            <li>
+                <a style= " height: 45px;" href="/search" class="btn-search">
+                    <div class="div-search">
+                        <svg width="24" viewBox="0 0 24 24" fill="none" stroke-width="1" stroke="#000000" style="pointer-events: none">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="M21 21l-4.35-4.35"></path>
+                        </svg>
+                    </div>
+                </a>
+            </li>
+        </ol>
+    </div>
+</nav>

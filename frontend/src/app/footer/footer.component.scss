@@ -1,0 +1,200 @@
+/*
+  Global footer menu
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+@import "../variables.scss";
+@import "../helpers.scss";
+
+  #menu-months {
+    #menu-months-content {
+        @extend .pos-fixed-bottom, .flex-justified-center;
+        left: 0;
+        padding-left: $menu-months-height;
+        z-index: 90;
+        width: 100%;
+        height: $menu-months-height;
+        background-color: $white;
+        border-top: 1px solid $black;
+    }
+
+    .nav{
+        height: $menu-months-height;
+    }
+
+    a.share, button {
+        display: block;
+        width: 73px;
+        height: $menu-months-height;
+        padding: 0 1em;
+        // border-right: 1px solid $black;
+        line-height: 2.7;
+        text-align: center;
+        text-decoration: none;
+        background-color: $white;
+        color: $black;
+        transition: color .14s linear, background-color .14s linear;
+    }
+
+    ol {
+        list-style-type: none;
+        height: inherit;
+        margin: 0;
+        padding: 0;
+    }
+
+    li.month {
+        float: left;
+        font-size: larger;
+    }
+      
+    li.month a {
+        display: block;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        color: $black;
+        padding-bottom: 14px;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+      
+    li.month a:hover {
+        background-color: #111111;
+    }
+    
+    li.share{
+        border: 1px solid;
+        width: 149px;
+    }
+      
+    li.month a:hover {
+        background-color: #111111;
+    }
+
+    // first level
+    #menu-months-content > ol > li {
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    // second level
+    ol.submenu {
+        position: absolute; bottom: 100%; right: 0; z-index: -1;
+        background-color: $white;
+        transform: translateY(100%);
+        transition: transform .27s ease-out;
+        a.share {
+            width: 74px;
+            border-left: 1px solid $black;
+        }
+    }
+
+    // right side items
+    ol.menu-months-func {
+        flex-shrink: 0;
+        height: inherit;
+        a.share, button{
+            width: 150px;;
+            border: none;
+            border-left: 1px solid $black;
+        }
+        .submenu a {
+            width: 150px;
+        }
+    }
+
+    // mobile month selector
+    .menu-months-selector {
+        display: none;
+    }
+}
+
+svg {
+    padding-block: initial;
+}
+
+.div-search {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-left: 1px solid black;
+}
+
+/*
+  Media queries
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+// Hover effects for mouse and touchpads
+@media (hover: hover) and (pointer: fine) {
+    // show second level
+    li:hover .submenu {
+        transform: translateY(0) !important;
+    }
+
+    // menu item hovered state
+    li:hover > a,
+    li:hover > button,
+    .submenu a.router-link-exact-active,
+    #menu-months-content > nav > div > ol > li > a.router-link-active {
+        background-color: $green !important;
+        color: $white;
+    }
+
+    // search button
+    ol.menu-months-func .btn-search {
+        display: flex;
+        &:hover svg,
+        &.router-link-active svg {
+            stroke: $white;
+        }
+    }
+
+    .div-search:hover {
+        background-color: $green;
+    }
+}
+
+// Smaller screens
+@media screen and (max-width: 950px) {
+    #menu-months {
+        #menu-months-content {
+            padding-left: 0;
+            ol.nav {
+                display: none;
+            }
+            .menu-months-selector {
+                display: block;
+                padding: 4px 0 0 calc(1em + 20px);
+                font-size: large;
+                font-weight: bold;
+                width: 100%;
+                height: $menu-months-height;
+                background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' viewBox='0 0 24 24' fill='none' stroke='currentColor'><rect x='3' y='4' width='18' height='18' rx='2' ry='2'/><path d='M16 2v4M8 2v4M3 10h18'/></svg>") no-repeat;
+                background-position: left 1em top 55%;
+            }
+
+            .btn-search {
+                width: $menu-months-height;
+                padding-left: 0;
+                padding-right: 0;
+
+            }
+        }
+    }
+}
+@media screen and (max-width: 350px) {
+    #menu-months #menu-months-content {
+        .menu-months-selector {
+            font-size: $font-size-sm;
+            letter-spacing: .03em;
+            padding-top: 2px;
+        }
+        .menu-months-func > * {
+            // Corrects thinner border-top on iOS devices.
+            height: calc(#{$menu-months-height} - 1px);
+        }
+    }
+}
